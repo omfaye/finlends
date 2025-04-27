@@ -14,7 +14,7 @@ import PrimaryButton from "@/components/UI/PrimaryButton";
 import Select from "react-select";
 import { State, City } from "country-state-city";
 import ReCAPTCHA from "react-google-recaptcha";
-import { StylesConfig } from 'react-select';
+import { StylesConfig } from "react-select";
 
 function Contact() {
   const notify = () => toast("Message sent successfully");
@@ -37,22 +37,19 @@ function Contact() {
   });
 
   const loanOptions = [
-    
-      { value: "Home Loan", label: "Home Loan" },
-      { value: "Home Loan BT Top Up", label: "Home Loan BT Top Up" },
-      { value: "Loan Against Properties", label: "Loan Against Properties" },
-      { value: "Loan Against Properties BT Top Up", label: "Loan Against Properties BT Top Up" },
-      { value: "Education Loan", label: "Education Loan" },
-      { value: "Personal Loan", label: "Personal Loan" },
-      { value: "Medical Loan", label: "Medical Loan" },
-       { value: "Car Loan", label: "Car Loan" },
-      { value: "Business Loan", label: "Business Loan" },
-      { value: "Cash Credit Over Draft", label: "Cash Credit Over Draft" },
-      { value: "School Funding", label: "School Funding" },
-      { value: "Builder Project Finance", label: "Builder Project Finance" },
-      { value: "Shop Purchase Loan", label: "Shop Purchase Loan" },
-   
-    
+    { value: "Home Loan", label: "Home Loan" },
+    { value: "Home Loan BT Top Up", label: "Home Loan BT Top Up" },
+    { value: "Loan Against Properties", label: "Loan Against Properties" },
+    { value: "Loan Against Properties BT Top Up", label: "Loan Against Properties BT Top Up" },
+    { value: "Education Loan", label: "Education Loan" },
+    { value: "Personal Loan", label: "Personal Loan" },
+    { value: "Medical Loan", label: "Medical Loan" },
+    { value: "Car Loan", label: "Car Loan" },
+    { value: "Business Loan", label: "Business Loan" },
+    { value: "Cash Credit Over Draft", label: "Cash Credit Over Draft" },
+    { value: "School Funding", label: "School Funding" },
+    { value: "Builder Project Finance", label: "Builder Project Finance" },
+    { value: "Shop Purchase Loan", label: "Shop Purchase Loan" },
   ];
 
   const inputStyle = {
@@ -93,8 +90,8 @@ function Contact() {
       backgroundColor: state.isSelected
         ? "#007bff"
         : state.isFocused
-          ? "rgba(0, 123, 255, 0.1)"
-          : "white",
+        ? "rgba(0, 123, 255, 0.1)"
+        : "white",
       color: state.isSelected ? "white" : "#333",
       cursor: "pointer",
       fontSize: "15px",
@@ -136,7 +133,7 @@ function Contact() {
     }),
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -145,7 +142,7 @@ function Contact() {
     setIsVerified(token !== null);
   };
 
-  const sendEmail = async (e) => {
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!isVerified) {
@@ -172,7 +169,7 @@ function Contact() {
           state: selectedState?.label || "",
           city: selectedCity?.label || "",
           message: formData.message,
-          'g-recaptcha-response': token
+          "g-recaptcha-response": token,
         },
         "YOUR_PUBLIC_KEY"
       );
@@ -201,10 +198,7 @@ function Contact() {
 
   return (
     <div className="overflow-x-hidden">
-      <Banner
-        heading={"Contact Us"}
-        items={["Home", "Contact Us"]}
-        banner_img={banner} />
+      <Banner heading={"Contact Us"} items={["Home", "Contact Us"]} banner_img={banner} />
       <section className="sign-up contact section">
         <div className="container">
           <div className="row gy-5 gy-xl-0 justify-content-center justify-content-lg-between">
@@ -236,7 +230,8 @@ function Contact() {
                           required
                           style={inputStyle}
                           value={formData.name}
-                          onChange={handleInputChange} />
+                          onChange={handleInputChange}
+                        />
                       </div>
                       <div className="input-single">
                         <label className="label" htmlFor="phone">
@@ -251,7 +246,8 @@ function Contact() {
                           required
                           style={inputStyle}
                           value={formData.phone}
-                          onChange={handleInputChange} />
+                          onChange={handleInputChange}
+                        />
                       </div>
                     </div>
                   </FadeDown>
@@ -274,24 +270,27 @@ function Contact() {
                               state: state?.label || "",
                               city: "",
                             }));
-                          } }
+                          }}
                           name="state"
                           placeholder="Select State..."
                           styles={customSelectStyles}
                           className="react-select-container"
                           classNamePrefix="react-select"
                           inputId="state"
-                          isClearable />
+                          isClearable
+                        />
                       </div>
                       <div className="input-single">
                         <label className="label">City</label>
                         <Select
-                          options={selectedState
-                            ? City.getCitiesOfState("IN", selectedState.value).map((city) => ({
-                              label: city.name,
-                              value: city.name,
-                            }))
-                            : []}
+                          options={
+                            selectedState
+                              ? City.getCitiesOfState("IN", selectedState.value).map((city) => ({
+                                  label: city.name,
+                                  value: city.name,
+                                }))
+                              : []
+                          }
                           value={selectedCity}
                           onChange={(city) => {
                             setSelectedCity(city);
@@ -299,7 +298,7 @@ function Contact() {
                               ...prev,
                               city: city?.label || "",
                             }));
-                          } }
+                          }}
                           name="city"
                           placeholder="Select City..."
                           styles={customSelectStyles}
@@ -307,7 +306,8 @@ function Contact() {
                           classNamePrefix="react-select"
                           inputId="city"
                           isDisabled={!selectedState}
-                          isClearable />
+                          isClearable
+                        />
                       </div>
                     </div>
                   </FadeTop>
@@ -324,13 +324,14 @@ function Contact() {
                             ...prev,
                             loanType: option?.value || "",
                           }));
-                        } }
+                        }}
                         name="loanType"
                         placeholder="Select Loan Type..."
                         styles={customSelectStyles}
                         className="react-select-container"
                         classNamePrefix="react-select"
-                        inputId="loanType" />
+                        inputId="loanType"
+                      />
                     </div>
                   </FadeDown>
 
@@ -364,7 +365,8 @@ function Contact() {
                         sitekey="YOUR_RECAPTCHA_SITE_KEY"
                         onChange={handleRecaptchaChange}
                         size="normal"
-                        hl="en" />
+                        hl="en"
+                      />
                     </div>
                   </FadeTop>
                 </div>
@@ -373,7 +375,8 @@ function Contact() {
                     <PrimaryButton
                       text="Send Message"
                       icon={<i className="bi bi-arrow-up-right"></i>}
-                      type="submit" />
+                      type="submit"
+                    />
                   </div>
                 </FadeTop>
               </form>
@@ -409,10 +412,7 @@ function Contact() {
                       </div>
                       <div className="card--small-content">
                         <h5 className="card--small-title">Email Address</h5>
-                        <Link
-                          href="mailto:loans@finlends.com"
-                          className="card--small-call"
-                        >
+                        <Link href="mailto:loans@finlends.com" className="card--small-call">
                           loans@finlends.com
                         </Link>
                       </div>
