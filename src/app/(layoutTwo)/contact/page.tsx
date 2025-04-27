@@ -14,6 +14,7 @@ import PrimaryButton from "@/components/UI/PrimaryButton";
 import Select from "react-select";
 import { State, City } from "country-state-city";
 import ReCAPTCHA from "react-google-recaptcha";
+import { StylesConfig } from 'react-select';
 
 function Contact() {
   const notify = () => toast("Message sent successfully");
@@ -66,7 +67,7 @@ function Contact() {
     width: "100%",
   };
 
-  const customSelectStyles = {
+  const customSelectStyles: StylesConfig = {
     control: (provided, state) => ({
       ...provided,
       minHeight: "50px",
