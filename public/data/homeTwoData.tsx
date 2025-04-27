@@ -45,13 +45,13 @@ export const worksData = [
     id: 1,
     img: request,
     title: "Consultation & Requirement Check",
-    des: "We understand your loan needs — amount, type, repayment ability — through a quick and simple consultation.",
+    des: "We quickly assess your loan needs through a simple consultation.",
   },
   {
     id: 2,
     img: options,
     title: "Eligibility Check & Choosing the Right Loan",
-    des: "We assess your eligibility and help you choose the most suitable loan offer based on your profile and goals.",
+    des: "We match you with the best loan offers based on your profile and goals.",
   },
   {
     id: 3,
