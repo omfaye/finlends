@@ -8,7 +8,7 @@ import Loading from "./loading";
 import Bootstrap from "@/components/Bootstrap/Bootstrap";
 import { Metadata } from "next";
 import "./globals.css";
-import RTLButton from "@/components/RTLButton/RTLButton";
+// import RTLButton from "@/components/RTLButton/RTLButton";
 
 const jost = Jost({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -34,7 +34,7 @@ export default function RootLayout({
             {children}
             <BackToTop />
             <ToastContainer />
-            <RTLButton />
+            {/* <RTLButton /> */}
           </Suspense>
         </Bootstrap>
       </body>
