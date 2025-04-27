@@ -11,10 +11,12 @@ import PrimaryButton from "@/components/UI/PrimaryButton";
 import AboutButton from "@/components/UI/AboutButton";
 
 // Define interface for LoanCard props
+import { ReactNode } from 'react';
+
 interface LoanCardProps {
-  title: string;
+  title: ReactNode; // allow JSX also, not just plain string
   iconSrc: string;
-  link?: string; // Optional, defaults to "#" in the component
+  link?: string;
 }
 
 const loanIcons = {
@@ -120,7 +122,7 @@ const BankingHomepage = () => {
   iconSrc={loanIcons.personal}
   link="/loan_reviews/LoanAgainstPropertiesBTTopUp"
 />
-  
+
             <LoanCard 
               title="EDUCATION LOAN" 
               iconSrc={loanIcons.mortgage}
