@@ -39,6 +39,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/react-google-recaptcha": "^2.1.9",
     "typescript": "^5.5.3"
   }
 }
