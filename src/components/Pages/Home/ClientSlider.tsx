@@ -5,8 +5,14 @@ import title from "@/../public/images/title_vector.png";
 import FadeLeft from "@/components/motionEffect/FadeLeft";
 import FadeTop from "@/components/motionEffect/FadeTop";
 
+interface Partner {
+  id: number;
+  name: string;
+  logo: string;
+}
+
 const ClientPartners = () => {
-  const allPartners = [
+  const allPartners: Partner[] = [
     { id: 1, name: "CIBIL", logo: "/images/bob.png" },
     { id: 2, name: "CRIF", logo: "/images/hdfc.avif" },
     { id: 3, name: "Equifax", logo: "/images/boi.png" },
@@ -25,7 +31,7 @@ const ClientPartners = () => {
     { id: 16, name: "Bank 12", logo: "/images/boi.png" },
   ];
 
-  const duplicateAndExtend = (array) => {
+  const duplicateAndExtend = (array: Partner[]) => {
     return [...array, ...array, ...array];
   };
 
@@ -50,7 +56,7 @@ const ClientPartners = () => {
   const lastTimestampRefs = useRef([0, 0, 0, 0]);
 
   // Animate the rows
-  const animate = (timestamp, rowIndex) => {
+  const animate = (timestamp: number, rowIndex: number) => {
     if (!lastTimestampRefs.current[rowIndex]) {
       lastTimestampRefs.current[rowIndex] = timestamp;
     }
@@ -99,7 +105,7 @@ const ClientPartners = () => {
   }, [animationPaused]);
 
   // Pause animation on hover
-  const handleMouseEnter = (rowIndex) => {
+  const handleMouseEnter = (rowIndex: number) => {
     setAnimationPaused(prev => {
       const newState = [...prev];
       newState[rowIndex] = true;
@@ -108,7 +114,7 @@ const ClientPartners = () => {
   };
 
   // Resume animation on mouse leave
-  const handleMouseLeave = (rowIndex) => {
+  const handleMouseLeave = (rowIndex: number) => {
     setAnimationPaused(prev => {
       const newState = [...prev];
       newState[rowIndex] = false;
@@ -125,10 +131,9 @@ const ClientPartners = () => {
               <div className="section__content">
                 <span className="section__content-sub-title headingFour">
                   <Image src={title} alt="vector" /> Our Lending Partners
-
                 </span>
                 <h2 className="section__header-title">
-                Trusted banks and financial institutions we proudly work with.
+                  Trusted banks and financial institutions we proudly work with.
                 </h2>
               </div>
             </FadeTop>
