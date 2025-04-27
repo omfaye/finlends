@@ -109,11 +109,18 @@ const BankingHomepage = () => {
               iconSrc={loanIcons.home}
               link="/loan_reviews/LoanAgainstProperties"
             />
-            <LoanCard 
-              title="LOAN AGAINST PROPERTY BT TOP-UP" 
-              iconSrc={loanIcons.personal}
-              link="/loan_reviews/LoanAgainstPropertiesBTTopUp"
-            />
+            <LoanCard
+  title={
+    <>
+      LOAN AGAINST PROPERTY
+      <br />
+      BT TOP-UP
+    </>
+  }
+  iconSrc={loanIcons.personal}
+  link="/loan_reviews/LoanAgainstPropertiesBTTopUp"
+/>
+  
             <LoanCard 
               title="EDUCATION LOAN" 
               iconSrc={loanIcons.mortgage}

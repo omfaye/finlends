@@ -121,12 +121,12 @@ const LoanDetails = () => {
             >
               Loan Benefits
             </button>
-            <button
+            {/* <button
               className="btn btn-outline-primary"
               onClick={() => scrollToSection(statisticsRef)}
             >
               Loan Statistics
-            </button>
+            </button> */}
             <button
               className="btn btn-outline-primary"
               onClick={() => scrollToSection(whoCanApplyRef)}
@@ -246,7 +246,7 @@ const LoanDetails = () => {
                   </div>
 
                   {/* Loan Statistics Section */}
-                  <div ref={statisticsRef}>
+                  {/* <div ref={statisticsRef}>
                     <FadeTop>
                       <div className="section__content">
                         <div className="card section__card">
@@ -298,7 +298,7 @@ const LoanDetails = () => {
                         </div>
                       </div>
                     </FadeTop>
-                  </div>
+                  </div> */}
 
                   {/* Who Can Apply Section */}
                   <div ref={whoCanApplyRef}>
