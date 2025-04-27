@@ -46,14 +46,14 @@ const ClientPartners = () => {
   // Track the translation position for each row
   const [translations, setTranslations] = useState([0, 0, 0, 0]);
   const [animationPaused, setAnimationPaused] = useState([false, false, false, false]);
-  const rowRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+  const rowRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
   
   // Speeds for each row (px per second)
   const speeds = [25, 25, 25, 25];
   
   // Animation reference for each row
-  const animationRefs = useRef([null, null, null, null]);
-  const lastTimestampRefs = useRef([0, 0, 0, 0]);
+  const animationRefs = useRef<(number | null)[]>([null, null, null, null]);
+  const lastTimestampRefs = useRef<number[]>([0, 0, 0, 0]);
 
   // Animate the rows
   const animate = (timestamp: number, rowIndex: number) => {
@@ -70,16 +70,19 @@ const ClientPartners = () => {
       setTranslations(prev => {
         const newTranslations = [...prev];
         
-        // Calculate new position
-        newTranslations[rowIndex] += (speeds[rowIndex] * elapsed) / 1000;
-        
-        // Get row width
-        const rowWidth = rowRefs[rowIndex].current.scrollWidth;
-        const visibleWidth = rowRefs[rowIndex].current.offsetWidth;
-        
-        // Reset position when we've scrolled one third of the way (since we have 3x duplicated content)
-        if (newTranslations[rowIndex] >= rowWidth / 3) {
-          newTranslations[rowIndex] = 0;
+        // Check if ref is available
+        if (rowRefs[rowIndex].current) {
+          // Calculate new position
+          newTranslations[rowIndex] += (speeds[rowIndex] * elapsed) / 1000;
+          
+          // Get row width
+          const rowWidth = rowRefs[rowIndex].current.scrollWidth;
+          const visibleWidth = rowRefs[rowIndex].current.offsetWidth;
+          
+          // Reset position when we've scrolled one third of the way (since we have 3x duplicated content)
+          if (newTranslations[rowIndex] >= rowWidth / 3) {
+            newTranslations[rowIndex] = 0;
+          }
         }
         
         return newTranslations;
