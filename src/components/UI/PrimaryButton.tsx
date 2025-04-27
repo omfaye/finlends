@@ -1,13 +1,15 @@
 "use client";
 import { ReactNode, useRef, useState } from "react";
+import Link from "next/link";
 
 interface PrimaryButtonProps {
   text: string;
   icon?: ReactNode;
   type?: "button" | "submit" | "reset";
+  url?: string; // Add url prop
 }
 
-const PrimaryButton = ({ text, icon, type = "button" }: PrimaryButtonProps) => {
+const PrimaryButton = ({ text, icon, type = "button", url }: PrimaryButtonProps) => {
   const [spanStyle, setSpanStyle] = useState<{ top: number; left: number }>({
     top: 0,
     left: 0,
@@ -32,7 +34,7 @@ const PrimaryButton = ({ text, icon, type = "button" }: PrimaryButtonProps) => {
     }
   };
 
-  return (
+  const buttonContent = (
     <button
       type={type}
       className="btn-filled"
@@ -45,6 +47,14 @@ const PrimaryButton = ({ text, icon, type = "button" }: PrimaryButtonProps) => {
       </span>
       <span className="ball" style={spanStyle}></span>
     </button>
+  );
+
+  return url ? (
+    <Link href={url} className="text-decoration-none">
+      {buttonContent}
+    </Link>
+  ) : (
+    buttonContent
   );
 };
 
