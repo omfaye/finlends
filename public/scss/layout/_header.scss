@@ -1,0 +1,651 @@
+/* ==== 
+ --------- (4.1) HEADER STYLES ---------
+ ==== */
+
+/* Base header positioning - absolute by default, becomes fixed when scrolled */
+.header-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 299; /* High z-index but below animated headers */
+}
+
+/* Animated header variants - used for scroll effects */
+.header-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 399; /* Above regular header */
+  background-color: white;
+  animation-name: fadeDown;
+  animation-duration: 1s;
+}
+
+.header-animation2 {
+  /* Same as .header-animation but with black background */
+  background-color: black;
+}
+
+/* Animation keyframes for header entrance effects */
+@keyframes fadeUp {
+  /* Slides up while fading in */
+  0% { opacity: 0; transform: translateY(0); }
+  100% { opacity: 1; transform: translateY(-20px); }
+}
+
+@keyframes fadeDown {
+  /* Slides down while fading in */
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Active state for navigation items */
+.navbar-active {
+  color: #fcb650; /* Highlight color for active nav items */
+}
+
+/* Special styling for index page navbar toggler */
+.index .navbar .navbar-toggler i {
+  color: $neutral-n-700;
+}
+
+/* Main navbar container styles */
+.header-section .navbar {
+  padding: 20px 0;
+  margin: 0;
+  position: relative;
+  gap: 40px; /* Space between navbar elements */
+  
+  /* Bottom border effect */
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid $secondary-color;
+    opacity: 0.1;
+  }
+
+  /* Mobile menu toggle button */
+  .navbar-toggler {
+    font-size: x-large;
+    border: none;
+    color: $white;
+    
+    &:focus {
+      outline: 0;
+      box-shadow: none; /* Remove default focus styles */
+    }
+  }
+}
+
+/* Brand/logo styling */
+.navbar-brand {
+  margin-right: 0;
+  display: flex;
+  justify-content: center; /* Center logo horizontally */
+}
+
+/* Index page specific nav link colors */
+.main-menu.index-page .navbar-nav {
+  .nav-item .nav-link {
+    color: $neutral-n-500;
+  }
+  
+  .nav-item .headerActiveColor {
+    color: #074c3e;
+    font-weight: 300;
+  }
+}
+
+/* Main navigation menu container */
+.main-menu {
+  width: 100%;
+  z-index: 299;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  /* Navigation items list */
+  .navbar-nav {
+    display: flex;
+    gap: 8px;
+
+    /* Dropdown menu styling */
+    .dropdown-menu {
+      max-height: 420px;
+      overflow-y: auto; /* Scrollable if content is too long */
+
+      /* Custom scrollbar styling */
+      &::-webkit-scrollbar {
+        width: 0.4vw;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: #cae6f7;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $primary-color;
+        border-radius: 5px;
+        box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
+                  inset -2px -2px 2px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    /* Individual navigation items */
+    .nav-item {
+      .nav-link {
+        line-height: $heading-line-height;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: $font-primary;
+        color: $white;
+        padding: 24px 8px;
+        text-transform: capitalize;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+
+        /* Dropdown toggle indicator */
+        &.dropdown-toggle::after {
+          border: none;
+          content: "\F4FE"; /* Bootstrap icons chevron */
+          font-family: "bootstrap-icons";
+          margin-left: auto;
+          transform: rotate(0deg);
+          transition: $transition;
+        }
+        
+        /* Dropdown open state */
+        &.show::after {
+          content: "\F2EA"; /* Different icon when open */
+          transform: rotate(90deg);
+        }
+        
+        /* Hover state */
+        &:hover {
+          color: $secondary-color !important;
+        }
+      }
+      
+      /* Active state color */
+      .activeColor {
+        color: #fcb650;
+      }
+    }
+  }
+
+  /* Dropdown item states */
+  .dropdown-item.active,
+  .dropdown-item:active {
+    background-color: transparent !important;
+  }
+
+  /* Right-aligned navigation elements (search, etc.) */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    /* Icons in nav-right */
+    .material-symbols-outlined {
+      color: $white;
+      cursor: pointer;
+    }
+
+    /* Search box styling */
+    .nav-right__search-inner {
+      margin-top: 30px;
+      border: 1px solid $primary-color;
+      border-radius: 7px;
+      display: none; /* Hidden by default */
+      position: absolute;
+      right: 0;
+      width: 50%;
+      animation: fadeDown 1s;
+      
+      /* Search form container */
+      .inner__form {
+        border-radius: 7px;
+        background: $white;
+        box-shadow: 0px 6px 12px -2px rgba(88, 82, 129, 0.08);
+        
+        /* Input field */
+        .form-control {
+          padding: 16px;
+          border: none;
+        }
+      }
+      
+      /* Search icon */
+      .search_icon {
+        padding: 16px;
+        background: $primary-color;
+        color: $white;
+        z-index: 10;
+        
+        i {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
+
+/* Active nav link state */
+.nav-link.active {
+  color: $secondary-color !important;
+}
+
+/* Fixed header when scrolled */
+.header-active {
+  position: fixed;
+  top: -70px;
+  transform: translateY(70px);
+  transition: transform 0.5s;
+  background-color: $neutral-n-900;
+  left: 0;
+  width: 100%;
+  
+  /* Remove bottom border when fixed */
+  .navbar:after {
+    border-bottom: none;
+  }
+}
+
+/* Special case for index page fixed header */
+.index.header-active {
+  background: white;
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+
+/* Large desktop screens (up to 1599px) */
+// @media (max-width: 1599px) {
+//   .main-menu {
+//     gap: 100px;
+    
+//     .navbar-nav {
+//       gap: 20px;
+      
+//       .nav-item .nav-link {
+//         padding: 24px 8px;
+//       }
+//     }
+    
+//     .nav-right {
+//       gap: 10px;
+//     }
+//   }
+// }
+@media (max-width: 1599px) {
+  .main-menu .navbar-nav .nav-item .nav-link {
+      padding: 15px 8px;
+      margin: 10px 5px;
+      white-space: nowrap;
+  }
+}
+/* Desktop screens (1200px and up) */
+@media (min-width: 1200px) {
+  /* Hide offcanvas menu on desktop */
+  .offcanvas {
+    display: none;
+  }
+  
+  /* Remove offcanvas backdrop */
+  .offcanvas-backdrop.show {
+    opacity: 0;
+  }
+  
+  /* Desktop dropdown menu styling */
+  .nav-item .dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 0.5rem);
+    pointer-events: none; /* Disable interaction when hidden */
+    min-width: 230px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: $primary-color;
+    margin: 0;
+    text-transform: capitalize;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 30px 70px 0px rgba(0, 0, 0, 0.15);
+    padding: 18px 0;
+    border-radius: 0;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 9;
+  }
+
+  /* Dropdown menu items */
+  .nav-item .dropdown-menu li {
+    margin-left: 0;
+    text-align: left;
+    
+    a {
+      padding: 9px 15px 9px 25px;
+      line-height: 1.4;
+      font-weight: 500;
+      color: #fff;
+      transition: all 0.3s ease-in-out;
+      
+      &:hover {
+        color: $white;
+        transform: translateX(8px); /* Slide effect on hover */
+        background: transparent;
+        width: 90%;
+      }
+    }
+  }
+
+  /* Dropdown toggle arrow rotation */
+  .main-menu .navbar-nav .nav-item:hover {
+    .nav-link.dropdown-toggle::after {
+      content: "\F2EA";
+      transform: rotate(-180deg);
+    }
+  }
+
+  /* Show dropdown on hover */
+  .nav-item:hover > .dropdown-menu {
+    top: 100%;
+    pointer-events: unset; /* Enable interaction */
+    visibility: visible;
+    opacity: 1;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  /* Dropdown item states */
+  .dropdown-item:focus,
+  .dropdown-item:hover {
+    background: transparent !important;
+  }
+}
+
+/* Medium desktop screens (up to 1399px) */
+@media (max-width: 1399px) {
+  .navbar-brand img {
+    max-width: 55% !important;
+  }
+}
+
+/* Extra large screens (up to 1700px) */
+
+@media (max-width: 1700px) {
+  .navbar-brand img {
+      max-width: 70% !important;
+  }
+}
+
+/* Tablet and mobile screens (up to 1199px) */
+@media (max-width: 1199px) {
+  /* Mobile dropdown toggle indicator */
+  .nav-item .nav-link .dropdown-toggle.show::after {
+    content: "\F2EA";
+    transform: rotate(90deg);
+    transition: $transition;
+  }
+  
+  /* Offcanvas mobile menu styling */
+  .offcanvas {
+    background: url(../../images/inner_banner.png);
+    @include background($neutral-n-900, no-repeat, right center, cover);
+    min-height: 100vh;
+    height: 100%;
+    min-width: 400px;
+    width: 400px;
+    overflow: clip !important;
+    border-left: none !important;
+
+    .offcanvas-body {
+      padding: 0;
+      overflow: clip;
+      
+      /* Left side of offcanvas menu */
+      .custom-nevbar__left {
+        padding: 30px 50px 40px 50px;
+        overflow-y: auto;
+        height: 100vh;
+
+        .sidebar-header {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        /* Hide scrollbar but keep scrolling */
+        &::-webkit-scrollbar {
+          width: 0;
+        }
+
+        /* Mobile navigation items */
+        .custom-nevbar__nav {
+          .dropdown-toggle::after {
+            content: "\F4FE"; /* Closed state icon */
+          }
+          
+          .dropdown-toggle.show::after {
+            content: "\F2EA"; /* Open state icon */
+          }
+          
+          li a {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(233, 248, 247, 0.125);
+            text-transform: capitalize;
+            transition: $transition;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &:hover {
+              color: $secondary-color !important;
+            }
+          }
+
+          /* Mobile dropdown menu */
+          .dropdown-menu.show {
+            position: unset !important;
+            padding: 0 20px 12px;
+            transform: translate(0px) !important;
+            border: none !important;
+            background: transparent;
+          }
+        }
+      }
+
+      /* Right side of offcanvas menu (contact info, etc.) */
+      .custom-nevbar__right {
+        padding: 80px 30px 40px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        gap: 60px;
+
+        .custom-nevbar__right-location {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          color: rgb(228, 226, 226);
+          
+          .contact {
+            color: white;
+          }
+        }
+      }
+
+      /* Close button for mobile menu */
+      button.close-icon {
+        background: transparent;
+        text-align: end;
+        
+        i {
+          border: 1px solid $secondary-color;
+          border-radius: 50%;
+          color: $secondary-color;
+          padding: 8px;
+          font-size: 30px;
+          transition: $transition;
+          
+          &:hover {
+            border-color: #e0f300;
+            color: #e0f300;
+          }
+        }
+      }
+    }
+  }
+
+  /* Mobile header adjustments */
+  .header-section .navbar {
+    padding: 20px 0;
+    
+    .navbar-toggler span {
+      color: white;
+    }
+  }
+
+  /* Mobile menu container */
+  .main-menu {
+    display: block;
+    height: 80vh;
+    overflow-y: auto;
+    
+    /* Hide scrollbar */
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    
+    .navbar-nav {
+      margin-top: 30px;
+      
+      .nav-item .nav-link {
+        padding: 10px 8px;
+        justify-content: start; /* Left-align mobile nav items */
+      }
+    }
+    
+    /* Mobile dropdown menu */
+    .navbar-nav .dropdown-menu {
+      background: transparent;
+      border: none;
+      margin-left: 30px;
+
+      li a {
+        padding: 9px 15px 9px 25px;
+        line-height: 1.4;
+        font-weight: 500;
+        text-transform: capitalize;
+        transition: all 0.3s ease-in-out;
+        
+        &:hover {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+}
+
+/* Medium tablets (up to 991px) */
+@media (max-width: 991px) {
+  .offcanvas .offcanvas-body {
+    button.close-icon i {
+      padding: 7px;
+      font-size: 26px;
+    }
+    
+    .custom-nevbar__left {
+      padding: 30px 40px 0;
+      
+      .custom-nevbar__nav li a {
+        font-size: 16px;
+        padding: 16px 0;
+      }
+    }
+  }
+}
+
+/* Small tablets and large phones (up to 767px) */
+@media (max-width: 767px) {
+  .offcanvas {
+    width: 320px;
+    
+    .offcanvas-body {
+      .custom-nevbar__left {
+        padding: 30px 30px 0;
+        
+        .custom-nevbar__nav {
+          li a {
+            font-size: 15px;
+            padding: 14px 0;
+          }
+          
+          .dropdown-toggle {
+            /* Adjust dropdown toggle icons */
+            &.show::after,
+            &::after {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+      
+      .custom-nevbar__right {
+        padding: 50px 30px 0;
+      }
+    }
+  }
+}
+
+/* Small phones (up to 575px) */
+@media (max-width: 575px) {
+  .header-section {
+    .navbar .navbar-brand {
+      width: 60%;
+      padding-left: 0;
+    }
+    
+    .navbar-toggler {
+      margin-right: 0;
+    }
+  }
+  
+  .offcanvas .offcanvas-body {
+    .custom-nevbar__left,
+    .custom-nevbar__right {
+      padding: 30px 20px 0;
+    }
+  }
+}
+
+/* Extra small phones (up to 400px) */
+@media (max-width: 400px) {
+  .header-section .navbar .navbar-brand {
+    /* Adjustments for very small screens */
+  }
+}
+
+/* Navigation text classes (can be used for specific nav items) */
+.nav-menu {
+  color: white;
+  font-size: 16px;
+  padding: 12px 0;
+  font-weight: 600;
+}
+
+.nav-menu-link {
+  color: white;
+  font-size: 16px;
+  padding: 16px 0;
+  font-weight: 500;
+}

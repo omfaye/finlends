@@ -1,0 +1,607 @@
+/* ==== 
+ --------- (3.1) buttons styles start ---------
+ ==== */
+
+// btn
+.btn-group {
+  gap: 24px;
+  flex-wrap: wrap;
+}
+a.conditions_apply {
+  position: relative;
+  margin: auto;
+  font-size: 12px;
+  &::after {
+    content: "";
+    position: absolute;
+    left: -8px;
+    display: flex;
+    align-items: center;
+    width: 3px;
+    height: 3px;
+    background: $primary-color;
+    border-radius: 50%;
+  }
+  &:hover::after {
+    background-color: #fcb650;
+  }
+  &:hover {
+    color: #fcb650;
+  }
+}
+
+.btn_theme {
+  color: $primary-color;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  text-transform: capitalize;
+  border: 1px solid $primary-color;
+  font-size: $font-size;
+  border-radius: 32px;
+  font-weight: 600;
+  line-height: $heading-line-height;
+  min-width: max-content;
+  transition: $transition;
+  position: relative;
+  z-index: 1;
+  span {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: $primary-color;
+    transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+  i {
+    transition: 0s;
+  }
+  svg path {
+    transition: $transition;
+  }
+
+  &:hover,
+  &:focus {
+    border: 1px solid $primary-color;
+    color: #fff;
+    svg path {
+      fill: #fff;
+    }
+    &[disabled="disabled"] {
+      color: $primary-color;
+      cursor: not-allowed;
+    }
+    span {
+      width: 225%;
+      height: 220px;
+    }
+  }
+}
+.btn_theme_active {
+  color: white;
+  position: relative;
+  z-index: 0;
+  &::after {
+    content: "";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    border-radius: 32px;
+    width: 100%;
+    height: 100%;
+    background: $primary-color;
+    z-index: -3;
+  }
+  span {
+    background-color: #fff;
+  }
+  &:hover,
+  &:focus {
+    color: $primary-color !important;
+  }
+}
+
+.btn-icon {
+  min-width: max-content;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  color: $primary-color;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 8px;
+  border: 1px solid $primary-color;
+  background-color: #fff;
+  transition: all 0.7s ease-in-out;
+}
+.btn-icon .ball {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: $primary-color;
+  -webkit-transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
+  transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.btn-icon:hover {
+  color: white;
+  background-color: transparent;
+}
+.btn-icon:hover .ball {
+  width: 225%;
+  height: 562.5px;
+}
+.btn-icon:active {
+  background-color: $primary-color;
+}
+//search button
+.btn-search {
+  min-width: max-content;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  color: $primary-color;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 14px;
+  border: 1px solid $primary-color;
+  background-color: #fff;
+  transition: all 0.7s ease-in-out;
+}
+.btn-search .ball {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: $primary-color;
+  -webkit-transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
+  transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.btn-search:hover {
+  color: white;
+  background-color: transparent;
+}
+.btn-search:hover .ball {
+  width: 225%;
+  height: 562.5px;
+}
+.btn-search:active {
+  background-color: $primary-color;
+}
+
+//about button
+.btn-about {
+  min-width: 180px;
+  text-align: center;
+  text-decoration: none;
+  color: $secondary-color;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 16px 32px;
+  border: 1px solid $secondary-color;
+  border-radius: 35px;
+  transition: all 0.7s ease-in-out;
+}
+.btn-about .ball {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: $primary-color;
+  -webkit-transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.btn-about:hover {
+  color: #eee;
+  background-color: transparent;
+  border: none;
+}
+
+.btn-about:hover .ball {
+  width: 225%;
+  height: 562.5px;
+}
+.btn-about:active {
+  background-color: $primary-color;
+}
+
+//outline button
+.btn-posnawr {
+  min-width: 170px;
+  text-align: center;
+  text-decoration: none;
+  color: $primary-color;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 16px 32px;
+  border: 1px solid $primary-color;
+  border-radius: 35px;
+  background-color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+.btn-posnawr .ball {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: $primary-color;
+  -webkit-transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
+  transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.btn-posnawr:hover {
+  color: #eee;
+  background-color: transparent;
+}
+.btn-posnawr:hover .ball {
+  width: 225%;
+  height: 562.5px;
+}
+.btn-posnawr:active {
+  background-color: $primary-color;
+}
+// filled
+// .btn-filled {
+//   min-width: 170px;
+//   text-align: center;
+//   text-decoration: none;
+//   font-weight: 600;
+//   color: #fff;
+//   position: relative;
+//   display: inline-block;
+//   overflow: hidden;
+//   padding: 16px 32px;
+//   border: 1px solid $primary-color;
+//   border-radius: 35px;
+//   background-color: $primary-color;
+//   transition: all 0.7s ease-in-out;
+// }
+.btn-filled {
+  min-width: 128px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  padding: 16px 32px;
+  border: 1px solid #03045E;
+  border-radius: 35px;
+  background-color: #03045E;
+  transition: all 0.7s ease-in-out;
+}
+
+.btn-filled .ball {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
+  transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.btn-filled:hover {
+  color: $primary-color;
+  border: 1px solid $primary-color;
+}
+.btn-filled:hover .ball {
+  width: 225%;
+  height: 562.5px;
+}
+.btn-filled:active {
+  background-color: $primary-color;
+}
+
+//   btn-filter
+.btn-filter {
+  min-width: max-content;
+  text-align: center;
+  text-decoration: none;
+  color: $primary-color;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 12px 24px;
+  border: 1px solid $primary-color;
+  border-radius: 35px;
+  background-color: #fff;
+}
+.btn-filter .ball {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: $primary-color;
+  -webkit-transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
+  transition: width 0.7s ease-in-out, height 0.7s ease-in-out;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.btn-filter:hover {
+  color: #eee;
+  background-color: transparent;
+}
+.btn-filter:hover .ball {
+  width: 225%;
+  height: 562.5px;
+}
+.btn-filter:active {
+  background-color: $primary-color;
+}
+
+.icon-one {
+  @include box(48px);
+  padding: 0 !important;
+  border: 1px solid #fcb650;
+  &::after {
+    content: "";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: -2;
+  }
+  i {
+    transition: $transition;
+    font-size: 18px;
+    color: #fcb650;
+  }
+  &:hover {
+    background-color: #fcb650;
+    i {
+      color: #074c3e;
+    }
+  }
+}
+
+.icon_box,
+.social_box {
+  @include box(48px);
+  padding: 0 !important;
+  &::after {
+    content: "";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: -2;
+  }
+  i {
+    transition: $transition;
+    font-size: 18px;
+    color: white;
+  }
+
+  &:hover,
+  &:focus {
+    background: $primary-color;
+    span {
+      width: 150px;
+      height: 150px;
+    }
+    i {
+      color: white;
+    }
+  }
+}
+
+.social_box {
+  @include box(40px);
+  &::after {
+    z-index: -2;
+  }
+  i {
+    font-size: 16px;
+  }
+}
+
+.btn_bg_white {
+  &::after {
+    background: white;
+  }
+  i {
+    color: $primary-color;
+  }
+
+  &:hover,
+  &:focus {
+    background: $primary-color;
+    i {
+      color: white;
+    }
+  }
+}
+
+// scrollToTop
+.scrollToTop {
+  position: fixed;
+  right: 30px;
+  bottom: -10px;
+  width: 45px;
+  height: 45px;
+  line-height: var(--body-line-height);
+  border-radius: 5px;
+  background-color: #074c3e;
+  box-shadow: 0px 0.5px 15px rgb(20, 41, 19);
+  font-size: 20px;
+  text-align: center;
+  z-index: 100;
+  cursor: pointer;
+  color: $white !important;
+  transition: 0.3s;
+  transform: translateY(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    color: $white !important;
+  }
+
+  &:focus {
+    color: $white !important;
+  }
+}
+
+[dir="rtl"] .scrollToTop {
+  left: 30px;
+  right: unset;
+}
+
+.topActive {
+  bottom: 30px;
+  transform: translateY(0%);
+  i {
+    animation: 4s previewUp infinite;
+  }
+}
+
+@media (max-width: 1599px) {
+  .topActive {
+    bottom: 60px;
+  }
+}
+@media (max-width: 1399px) {
+  .sidebar-filter,
+  .sidebar_fixed {
+    top: initial;
+    z-index: 2;
+    transition: $transition;
+    &.show {
+      visibility: visible;
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+  .sidebar_btn {
+    position: sticky;
+    top: 140px;
+    background: $primary-color;
+    padding: 12px 16px;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 16px;
+    &:hover,
+    &:focus {
+      color: white;
+    }
+  }
+  .btn_sticky {
+    position: sticky;
+    top: 100px;
+    z-index: 9;
+  }
+}
+@media (max-width: 1399px) {
+  .sidebar-xxl-fixed {
+    position: absolute;
+    transform: translateX(-200px);
+    opacity: 0;
+    &.show {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+}
+@media (max-width: 1199px) {
+  .sidebar-filter,
+  .sidebar_fixed {
+    visibility: hidden;
+  }
+  .btn_theme {
+    padding: 10px 20px;
+    i {
+      font-size: 14px;
+    }
+  }
+  .sidebar-xl-fixed {
+    position: absolute;
+    transform: translateX(-200px);
+    opacity: 0;
+    &.show {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .sidebar-lg-fixed {
+    position: absolute;
+    transform: translateX(-200px);
+    opacity: 0;
+    &.show {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .social_box {
+    @include box(32px);
+  }
+}
+
+@media (max-width: 575px) {
+  .btn-group {
+    gap: 20px;
+  }
+}
+@media (max-width: 479px) {
+  .btn-group {
+    gap: 16px;
+  }
+  .btn_theme {
+    padding: 10px 18px;
+    i {
+      font-size: 13px;
+    }
+  }
+}
+
+/* ====  
+ --------- (3.1) buttons styles end ---------
+ ==== */

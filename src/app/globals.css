@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.swiper-wrapper {
+  -webkit-transition-timing-function: linear !important;
+  -o-transition-timing-function: linear !important;
+  transition-timing-function: linear !important;
+}
+
+.swiper-pagination-bullet {
+  --swiper-pagination-bullet-size: 12px;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #074c3e !important;
+  /* --swiper-pagination-bullet-size: 18px; */
+  --swiper-pagination-bullet-width: 28px;
+  --swiper-pagination-bullet-height: 12px;
+  border-radius: 10px !important;
+  transition: all 0.3s ease-in-out;
+}
+
+/* reviews progress bar */
+.progWidth-90 {
+  max-width: 90%;
+}
+
+.progWidth-85 {
+  max-width: 85%;
+}
+
+.progWidth-75 {
+  max-width: 75%;
+}
+
+.progWidth-67 {
+  max-width: 67%;
+}
+
+.progWidth-44 {
+  max-width: 44%;
+}
+
+.progWidth-21 {
+  max-width: 21%;
+}
+
+/*active color  */
+
+.dropdown_active_color {
+  color: #fcb650 !important;
+}
+/* banner animation  */
+.banner-animation {
+  animation: previewShapeX 3s linear infinite;
+}
+/* responsive navbar transition  */
+.nav-animation {
+  transform: translateX(0);
+  transition: 1s;
+}
+.nav-animation2 {
+  transform: translateX(-100%);
+  transition: 1s;
+}
