@@ -72,10 +72,21 @@ const LoanDetails = () => {
   const chargesRef = useRef<HTMLDivElement>(null);
   const repaymentRef = useRef<HTMLDivElement>(null);
   const prosConsRef = useRef<HTMLDivElement>(null);
-  const faqs = useRef<HTMLDivElement>(null);
+  const faqsRef = useRef<HTMLDivElement>(null);
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
+    if (ref.current) {
+      const navBar = document.querySelector(".sticky"); // Select the sticky navigation bar
+      const navBarHeight = navBar ? navBar.getBoundingClientRect().height : 0;
+      const offset = navBarHeight + 20; // Add extra padding if needed
+      const elementPosition = ref.current.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   if (!bodyData?.title) {
@@ -121,12 +132,6 @@ const LoanDetails = () => {
             >
               Loan Benefits
             </button>
-            {/* <button
-              className="btn btn-outline-primary"
-              onClick={() => scrollToSection(statisticsRef)}
-            >
-              Loan Statistics
-            </button> */}
             <button
               className="btn btn-outline-primary"
               onClick={() => scrollToSection(whoCanApplyRef)}
@@ -159,7 +164,7 @@ const LoanDetails = () => {
             </button>
             <button
               className="btn btn-outline-primary"
-              onClick={() => scrollToSection(faqs)}
+              onClick={() => scrollToSection(faqsRef)}
             >
               Common Questions
             </button>
@@ -244,61 +249,6 @@ const LoanDetails = () => {
                       </div>
                     </FadeTop>
                   </div>
-
-                  {/* Loan Statistics Section */}
-                  {/* <div ref={statisticsRef}>
-                    <FadeTop>
-                      <div className="section__content">
-                        <div className="card section__card">
-                          <h2 className="section__content-title">Loan Statistics</h2>
-                          <div className="row">
-                            <div className="col-md-6">
-                              <h3>Loan Categories</h3>
-                              <ul className="list-disc ml-6 mt-4 space-y-2">
-                                {categoriesData.map((category) => (
-                                  <li key={category.id}>
-                                    {category.category}: {category.number} loans
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            <div className="col-md-6">
-                              <h3>Processing Times</h3>
-                              <ul className="list-disc ml-6 mt-4 space-y-2">
-                                {timesData.map((time) => (
-                                  <li key={time.id}>
-                                    {time.time}: {time.number} loans
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
-                          <div className="row mt-4">
-                            <div className="col-md-6">
-                              <h3>Star Ratings</h3>
-                              <ul className="list-disc ml-6 mt-4 space-y-2">
-                                {starCategory.map((star) => (
-                                  <li key={star.id}>
-                                    {star.star}: {star.number} reviews
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            <div className="col-md-6">
-                              <h3>Locations</h3>
-                              <ul className="list-disc ml-6 mt-4 space-y-2">
-                                {locationsData.map((location) => (
-                                  <li key={location.id}>
-                                    {location.country}: {location.number} loans
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </FadeTop>
-                  </div> */}
 
                   {/* Who Can Apply Section */}
                   <div ref={whoCanApplyRef}>
@@ -388,11 +338,11 @@ const LoanDetails = () => {
                   </div>
 
                   {/* Repayment Terms Section */}
-                  <div ref={repaymentRef}>
+                  {/* <div ref={repaymentRef}>
                     <FadeTop>
                       <div className="section__content">
                         <div className="card section__card">
-                          <h3 className="section__content-title">Repayment Terms</h3>
+                          <h3 className="section__content-title">Rep Factoringayment Terms</h3>
                         </div>
                         <div className="card repayment__card p-6">
                           <ol className="number space-y-4">
@@ -408,7 +358,7 @@ const LoanDetails = () => {
                         </div>
                       </div>
                     </FadeTop>
-                  </div>
+                  </div> */}
 
                   {/* Pros & Cons Section */}
                   <div ref={prosConsRef}>
@@ -442,9 +392,19 @@ const LoanDetails = () => {
                     </FadeTop>
                   </div>
 
-                  {/* Reviews Section */}
-                  <div className="reviews-details__part">
-                    <ReviewAccording />
+                  {/* Common Questions Section */}
+                  <div ref={faqsRef}>
+                    <FadeTop>
+                      <div className="section__content">
+                        <div className="card section__card">
+                          <h2 className="section__content-title">Frequently Asked Question</h2>
+                          {/* <p className="section__content-text">
+                            Find answers to frequently asked questions about {bodyData.title}.
+                          </p> */}
+                          <ReviewAccording />
+                        </div>
+                      </div>
+                    </FadeTop>
                   </div>
                 </div>
               </div>
