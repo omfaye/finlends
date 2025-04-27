@@ -7,7 +7,7 @@ import FadeTop from "@/components/motionEffect/FadeTop";
 import Banner from "@/components/shared/Banner";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrimaryButton from "@/components/UI/PrimaryButton";
@@ -16,15 +16,20 @@ import { State, City } from "country-state-city";
 import ReCAPTCHA from "react-google-recaptcha";
 import { StylesConfig } from "react-select";
 
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
 function Contact() {
   const notify = () => toast("Message sent successfully");
   const form = useRef<HTMLFormElement | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [isVerified, setIsVerified] = useState(false);
 
-  const [selectedState, setSelectedState] = useState<any>(null);
-  const [selectedCity, setSelectedCity] = useState<any>(null);
-  const [selectedLoanType, setSelectedLoanType] = useState<any>(null);
+  const [selectedState, setSelectedState] = useState<SelectOption | null>(null);
+  const [selectedCity, setSelectedCity] = useState<SelectOption | null>(null);
+  const [selectedLoanType, setSelectedLoanType] = useState<SelectOption | null>(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -36,7 +41,7 @@ function Contact() {
     message: "",
   });
 
-  const loanOptions = [
+  const loanOptions: SelectOption[] = [
     { value: "Home Loan", label: "Home Loan" },
     { value: "Home Loan BT Top Up", label: "Home Loan BT Top Up" },
     { value: "Loan Against Properties", label: "Loan Against Properties" },
@@ -64,7 +69,7 @@ function Contact() {
     width: "100%",
   };
 
-  const customSelectStyles: StylesConfig = {
+  const customSelectStyles: StylesConfig<SelectOption, false> = {
     control: (provided, state) => ({
       ...provided,
       minHeight: "50px",
@@ -132,7 +137,6 @@ function Contact() {
       backgroundColor: "#e1e1e1",
     }),
   };
-
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -235,6 +239,26 @@ function Contact() {
                         />
                       </div>
                       <div className="input-single">
+                        <label className="label" htmlFor="email">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          name="email"
+                          id="email"
+                          placeholder="Enter Your Email..."
+                          required
+                          style={inputStyle}
+                          value={formData.email}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </div>
+                  </FadeDown>
+                  <FadeDown>
+                    <div className="input-group">
+                      <div className="input-single">
                         <label className="label" htmlFor="phone">
                           Phone
                         </label>
@@ -265,7 +289,7 @@ function Contact() {
                           value={selectedState}
                           onChange={(state) => {
                             setSelectedState(state);
-                            setSelectedCity(null); // Reset city when state changes
+                            setSelectedCity(null);
                             setFormData((prev) => ({
                               ...prev,
                               state: state?.label || "",
@@ -427,7 +451,7 @@ function Contact() {
                       </div>
                       <div className="card--small-content">
                         <h5 className="card--small-title">Location</h5>
-                        <p>Plot no 7,N B Tower 1st floor,Above Bank of Baroda,Manish Nagar Nagpur.</p>
+                        <p>Plot no 7, N B Tower 1st floor, Above Bank of Baroda, Manish Nagar, Nagpur.</p>
                       </div>
                     </div>
                   </FadeDown>

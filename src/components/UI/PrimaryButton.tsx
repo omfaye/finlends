@@ -1,11 +1,19 @@
 "use client";
 import { ReactNode, useRef, useState } from "react";
-const PrimaryButton = ({ text, icon }: { text: string; icon?: ReactNode }) => {
+
+interface PrimaryButtonProps {
+  text: string;
+  icon?: ReactNode;
+  type?: "button" | "submit" | "reset";
+}
+
+const PrimaryButton = ({ text, icon, type = "button" }: PrimaryButtonProps) => {
   const [spanStyle, setSpanStyle] = useState<{ top: number; left: number }>({
     top: 0,
     left: 0,
   });
   const btnRef = useRef<HTMLButtonElement>(null);
+
   const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (btnRef.current) {
       const parentOffset = btnRef.current.getBoundingClientRect();
@@ -14,6 +22,7 @@ const PrimaryButton = ({ text, icon }: { text: string; icon?: ReactNode }) => {
       setSpanStyle({ top: relY, left: relX });
     }
   };
+
   const handleMouseOut = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (btnRef.current) {
       const parentOffset = btnRef.current.getBoundingClientRect();
@@ -22,8 +31,10 @@ const PrimaryButton = ({ text, icon }: { text: string; icon?: ReactNode }) => {
       setSpanStyle({ top: relY, left: relX });
     }
   };
+
   return (
-    <span
+    <button
+      type={type}
       className="btn-filled"
       ref={btnRef}
       onMouseEnter={handleMouseEnter}
@@ -33,7 +44,8 @@ const PrimaryButton = ({ text, icon }: { text: string; icon?: ReactNode }) => {
         {text} {icon}
       </span>
       <span className="ball" style={spanStyle}></span>
-    </span>
+    </button>
   );
 };
+
 export default PrimaryButton;
