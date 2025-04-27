@@ -1,4 +1,3 @@
- 
 "use client";
 import React, { SyntheticEvent, useState } from "react";
 import title from "@/../public/images/title_vector.png";
@@ -8,6 +7,62 @@ import FadeLeft from "@/components/motionEffect/FadeLeft";
 import FadeDown from "@/components/motionEffect/FadeDown";
 import FadeTop from "@/components/motionEffect/FadeTop";
 import PrimaryButton from "@/components/UI/PrimaryButton";
+
+interface FormData {
+  // Step 1: Existing Loan Details
+  currentLender: string;
+  outstandingAmount: number;
+  currentROI: number;
+  emiAmount: number;
+  remainingTenure: number;
+  
+  // Step 2: Top-Up Requirements
+  topUpAmount: number;
+  topUpPurpose: string;
+  
+  // Step 3: Property Details
+  propertyAddress: string;
+  propertyAge: string;
+  propertyValue: string;
+  city: string;
+  state: string;
+  pinCode: string;
+  
+  // Step 4: Employment Details
+  employmentType: string;
+  // For Salaried
+  companyName: string;
+  designation: string;
+  workExperience: string;
+  monthlyIncome: string;
+  
+  // For Self-Employed
+  businessName: string;
+  businessType: string;
+  businessExperience: string;
+  annualIncome: string;
+  
+  // Step 5: Personal Information
+  fullName: string;
+  email: string;
+  phone: string;
+  dateOfBirth: string;
+  panNumber: string;
+  address: string;
+  
+  // Step 6: Document Upload
+  existingLoanStatement: File | null;
+  propertyDocuments: File | null;
+  incomeProof: File | null;
+  identityProof: File | null;
+  
+  // Form control
+  currentStep: number;
+  consent: boolean;
+  loading: boolean;
+  error: string;
+  success: boolean;
+}
 
 const HomeLoanBTTopUp = () => {
   const steps = [
@@ -19,7 +74,7 @@ const HomeLoanBTTopUp = () => {
     "Document Upload"
   ];
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     // Step 1: Existing Loan Details
     currentLender: "",
     outstandingAmount: 1000000,
@@ -111,7 +166,7 @@ const HomeLoanBTTopUp = () => {
       Object.entries(formData).forEach(([key, value]) => {
         if (value instanceof File) {
           submitData.append(key, value);
-        } else if (typeof value !== 'boolean' && typeof value !== 'object') {
+        } else if (typeof value !== 'boolean' && value !== null) {
           submitData.append(key, String(value));
         }
       });
